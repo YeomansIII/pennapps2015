@@ -1,38 +1,69 @@
 {% extends 'layouts/base.html' %} {% block title %} SRCT RoomList &bull; Homepage {% endblock %} {% block content %}
 
 <section id="main-slider" class="no-margin">
-        <div class="carousel slide">
-            <ol class="carousel-indicators">
-                <li data-target="#main-slider" data-slide-to="0" class="active"></li>
-            </ol>
-            <div class="carousel-inner">
+  <div class="carousel slide">
+    <ol class="carousel-indicators">
+      <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+    </ol>
+    <div class="carousel-inner">
 
-                <div class="item active" style="background-image: url(/static/images/cover.jpg)">
-                    <div class="container">
-                        <div class="row slide-margin">
-                            <div class="col-sm-6">
-                                <div class="carousel-content">
-                                    <h1 class="animation animated-item-1"><font color="white">Do your part to help feed the hungry.</font></h1>
-                                    <h2 class="animation animated-item-2"><font color="white">Together, we can make a difference.</font></h2>
-                                    <a class="btn-slide animation animated-item-3" href="{% url 'about' %}">Read More</a>
-                                </div>
-                            </div>
-                            <!--
+      <div class="item active" style="background-image: url(/static/images/cover.jpg)">
+        <div class="container">
+          <div class="row slide-margin">
+            <div class="col-sm-6">
+              <div class="carousel-content">
+                <h1 class="animation animated-item-1"><font color="white">Do your part to help feed the hungry.</font></h1>
+                <h2 class="animation animated-item-2"><font color="white">Together, we can make a difference.</font></h2>
+                <a class="btn-slide animation animated-item-3" href="{% url 'about' %}">Read More</a>
+              </div>
+            </div>
+            <!--
                             <div class="col-sm-6 hidden-xs animation animated-item-4">
                                 <div class="slider-img">
                                     <img src="/static/images/slider/img1.png" class="img-responsive">
                                 </div>
                             </div>-->
 
-                        </div>
-                    </div>
-                </div><!--/.item-->
+          </div>
+        </div>
+      </div>
+      <!--/.item-->
 
 
-            </div><!--/.carousel-inner-->
-        </div><!--/.carousel-->
-       
-    </section><!--/#main-slider-->
+    </div>
+    <!--/.carousel-inner-->
+  </div>
+  <!--/.carousel-->
+
+</section>
+<!--/#main-slider-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <h4><i class="fa fa-key fa-lg"></i></h4>
+      <h4>Log in with your Mason credentials</h4>
+    </div>
+    <div class="col-md-3 text-center">
+      <h4><i class="fa fa-group fa-lg"></i></h4>
+      <h4>See who else lives on your floor</h4>
+    </div>
+    <div class="col-md-3 text-center">
+      <h4><i class="fa fa-facebook fa-lg"></i></h4>
+      <h4>Link to your social media accounts</h4>
+    </div>
+    <div class="col-md-3 text-center">
+      <h4><i class="fa fa-lock fa-lg"></i></h4>
+      <h4>Choose to share by floor, building, or campus</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class=".col-md-12 text-center">
+      <button type="button" class="btn btn-primary" id="get-started">Get Started</button>
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}

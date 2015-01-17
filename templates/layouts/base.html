@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
         "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="description" content="Find your on campus neighbors"> {% load staticfiles %}
@@ -10,6 +11,30 @@
   <script type="text/javascript" src="/static/js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
   <link rel="icon" href="/static/img/favicon.ico">
+
+  <script src="//checkout.stripe.com/v2/checkout.js"></script>
+  <script>
+    $(function() {
+      $('body').on("click", '.change-card, .subscribe-form button[type=submit]', function(e) {
+        e.preventDefault();
+        var $form = $(this).closest("form"),
+          token = function(res) {
+            $form.find("input[name=stripe_token]").val(res.id);
+            $form.trigger("submit");
+          };
+
+        StripeCheckout.open({
+          key: $form.data("stripe-key"),
+          name: 'Payment Method',
+          panelLabel: 'Add Payment Method',
+          token: token
+        });
+
+        return false;
+      });
+    });
+  </script>
+
   <title> {% block title %} {% endblock %}</title>
 </head>
 

@@ -38,8 +38,8 @@ class Address(models.Model):
 
 class Coordinate(models.Model):
 
-    longitude = models.CharField(max_length=9)
-    latitude = models.CharField(max_length=9)
+    longitude = models.DecimalField(max_digits=9, decimal_places=7)
+    latitude = models.DecimalField(max_digits=9, decimal_places=7)
 
     def __str__(self):              # __unicode__ on Python 2
         return self.longitude+" "+self.latitude

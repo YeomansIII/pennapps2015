@@ -11,7 +11,7 @@ class DonationCenter(models.Model):
     INDUSTRY_CHOICES = (
         (FOOD, 'Food'),
         (CLOTHING, 'Clothing'),
-        (TOYS, 'Toys')
+        (TOYS, 'Toys'),
         (HOUSEHOLD_ITEMS, 'Household Items'),
     )
 

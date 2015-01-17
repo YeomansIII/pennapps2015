@@ -1,0 +1,36 @@
+
+<head>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	
+ 	<link href="../static/css/map.css" rel="stylesheet">
+</head>
+ <div id="map" style="width: 600px; height: 400px"></div>
+ <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>	
+ <script>
+ 		//39.9500° N, 75.1667
+		var map = L.map('map').setView([39.95, -75.1667], 13);
+
+		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			id: 'examples.map-i875mjb7'
+		}).addTo(map);
+
+
+		L.marker([39.95, -75.1667]).addTo(map)
+			.bindPopup("<b>Homeless Shelter 1<b>").openPopup();
+
+		var popup = L.popup();
+
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(map);
+		}
+
+		map.on('click', onMapClick);
+
+	</script>

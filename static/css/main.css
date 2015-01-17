@@ -2500,8 +2500,11 @@ shortcodes page css
 }
 
 #footer {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  
+  
+
+  padding-bottom: 10px;
+  padding-top: 10px;
   color: #fff;
   background: #2e2e2e;
 }

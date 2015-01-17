@@ -11,7 +11,7 @@ def Privacy(request):
     return render(request, 'privacy.html')
 
 def Pickup(request):
-    return render(request, 'index.html')
+    return render(request, 'pickup.html')
 
 def Tracking(request):
-    return render(request, 'index.html')
+    return render(request, 'tracking.html')

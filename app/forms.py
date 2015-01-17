@@ -1,5 +1,9 @@
 from django import forms
+from crispy_forms.helper import FormHelper
  
-class PickupForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.form_tag = False
+ 
     class Meta:
-        model = Pickup
+        model = Pickup # Your user model

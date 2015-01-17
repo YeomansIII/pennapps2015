@@ -46,18 +46,18 @@ class Coordinate(models.Model):
         return self.longitude+" "+self.latitude
 
 class Pickup(TimeStampedModel):
-    manifest = models.CharFields(max_length=100)
-    pickup_name = models.CharFields(max_length=100)
-    pickup_address = models.CharFields(max_length=100)
-    pickup_phone_number = models.CharFields(max_length=20)
-    pickup_business_name = models.CharFields(max_length=100)
-    pickup_notes = models.CharFields(max_length=200)
-    dropoff_name = models.CharFields(max_length=100)
-    dropoff_address = models.CharFields(max_length=100)
-    dropoff_phone_number = models.CharFields(max_length=20)
-    dropoff_business_name = models.CharFields(max_length=100)
-    dropoff_notes = models.CharFields(max_length=200)
-    quote_id = models.CharFields(max_length=20)
+    manifest = models.CharField(max_length=100)
+    pickup_name = models.CharField(max_length=100)
+    pickup_address = models.CharField(max_length=100)
+    pickup_phone_number = models.CharField(max_length=20)
+    pickup_business_name = models.CharField(max_length=100)
+    pickup_notes = models.CharField(max_length=200)
+    dropoff_name = models.CharField(max_length=100)
+    dropoff_address = models.CharField(max_length=100)
+    dropoff_phone_number = models.CharField(max_length=20)
+    dropoff_business_name = models.CharField(max_length=100)
+    dropoff_notes = models.CharField(max_length=200)
+    quote_id = models.CharField(max_length=20)
 
     def __str__(self):
         return self.manifest

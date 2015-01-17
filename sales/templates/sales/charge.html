@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %} {% block title %} SRCT RoomList &bull; Homepage {% endblock %} {% block content %}
+
+<div class="wrapper">
+
+  {% for key, value in form.errors.items %}
+      <p>{{ value }}</p>
+  {% endfor %}
+
+  <form action="" method="post">{% csrf_token %}
+
+    {% for field in form %}
+      <div class="field-wrapper">
+
+        <div class="field-label">
+          {{ field.label_tag }}:
+        </div>
+
+        <div class="field-field">
+          {{ field }}
+          {{ field.errors }}
+        </div>
+
+      </div>
+    {% endfor %}
+
+    <br>
+    <input type="submit" value="Charge Me!" />
+  </form>
+
+</div>
+
+{% endblock %}

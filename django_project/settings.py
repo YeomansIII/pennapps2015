@@ -28,6 +28,7 @@ ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'sales/templates'),
 )
 
 STATICFILES_DIRS = (
@@ -88,6 +89,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+STRIPE_API_KEY = 'sk_test_R5gyu7pHCIZY7fKKDSRVxp6m'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/

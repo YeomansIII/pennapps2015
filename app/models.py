@@ -6,13 +6,13 @@ class DonationCenter(models.Model):
 
     FOOD = 'fd'
     CLOTHING = 'cl'
-    RAPP = 'ra'
-    SHENANDOAH = 'sh'
+    TOYS = 'ty'
+    HOUSEHOLD_ITEMS = 'hi'
     INDUSTRY_CHOICES = (
         (FOOD, 'Food'),
         (CLOTHING, 'Clothing'),
-        (RAPP, 'Rappahannock'),
-        (SHENANDOAH, 'Shenandoah'),
+        (TOYS, 'Toys'),
+        (HOUSEHOLD_ITEMS, 'Household Items'),
     )
 
     industry = models.CharField(max_length=100, choices=INDUSTRY_CHOICES,
@@ -38,8 +38,8 @@ class Address(models.Model):
 
 class Coordinate(models.Model):
 
-    longitude = models.CharField(max_length=9)
-    latitude = models.CharField(max_length=9)
+    longitude = models.DecimalField(max_digits=9, decimal_places=7)
+    latitude = models.DecimalField(max_digits=9, decimal_places=7)
 
     def __str__(self):              # __unicode__ on Python 2
         return self.longitude+" "+self.latitude

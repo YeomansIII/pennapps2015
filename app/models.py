@@ -6,13 +6,13 @@ class DonationCenter(models.Model):
 
     FOOD = 'fd'
     CLOTHING = 'cl'
-    RAPP = 'ra'
-    SHENANDOAH = 'sh'
+    TOYS = 'ty'
+    HOUSEHOLD_ITEMS = 'hi'
     INDUSTRY_CHOICES = (
         (FOOD, 'Food'),
         (CLOTHING, 'Clothing'),
-        (RAPP, 'Rappahannock'),
-        (SHENANDOAH, 'Shenandoah'),
+        (TOYS, 'Toys')
+        (HOUSEHOLD_ITEMS, 'Household Items'),
     )
 
     industry = models.CharField(max_length=100, choices=INDUSTRY_CHOICES,

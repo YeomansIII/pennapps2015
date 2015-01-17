@@ -1,4 +1,5 @@
 from django.db import models
+from model_utils.models import TimeStampedModel
 
 # Create your models here.
 class DonationCenter(models.Model):
@@ -43,3 +44,20 @@ class Coordinate(models.Model):
 
     def __str__(self):              # __unicode__ on Python 2
         return self.longitude+" "+self.latitude
+
+class Pickup(TimeStampedModel):
+    manifest = models.CharFields(max_length=100)
+    pickup_name = models.CharFields(max_length=100)
+    pickup_address = models.CharFields(max_length=100)
+    pickup_phone_number = models.CharFields(max_length=20)
+    pickup_business_name = models.CharFields(max_length=100)
+    pickup_notes = models.CharFields(max_length=200)
+    dropoff_name = models.CharFields(max_length=100)
+    dropoff_address = models.CharFields(max_length=100)
+    dropoff_phone_number = models.CharFields(max_length=20)
+    dropoff_business_name = models.CharFields(max_length=100)
+    dropoff_notes = models.CharFields(max_length=200)
+    quote_id = models.CharFields(max_length=20)
+
+    def __str__(self):
+        return self.manifest

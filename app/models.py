@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class DonationCenter(TimeStampedModel):
+class DonationCenter(models.Model):
     name = models.CharField(max_length=100)
 
     FOOD = 'fd'
@@ -16,7 +16,7 @@ class DonationCenter(TimeStampedModel):
     )
 
     industry = models.CharField(max_length=100, choices=INDUSTRY_CHOICES,
-    default=NONE)
+    default=FOOD)
 
     address = models.ForeignKey('Address')
     coordinate = models.ForeignKey('Coordinate')
@@ -26,11 +26,20 @@ class DonationCenter(TimeStampedModel):
     def __unicode__(self):              # __unicode__ on Python 2
         return unicode(self.name)
 
-class Address(TimeStampedModel):
-
-    street = models.CharField(max_length=120)
-    city = models.CharField(max_length=120)
-    zip_code = models.IntegerField(max_length=5)
+class Address(models.Model):
+    num = models.IntegerField()
+    street = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=2)
+    zipcode = models.CharField(max_length=5)
 
     def __str__(self):              # __unicode__ on Python 2
-        return self.street
+        return self.num+" "+self.street
+
+class Coordinate(models.Model):
+
+    longitude = models.CharField(max_length=9)
+    latitude = models.CharField(max_length=9)
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.longitude+" "+self.latitude

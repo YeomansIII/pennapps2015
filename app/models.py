@@ -46,13 +46,13 @@ class Coordinate(models.Model):
         return str(self.longitude)+" "+str(self.latitude)
 
 class Pickup(TimeStampedModel):
-    manifest = models.CharField(max_length=100)
-    pickup_name = models.CharField(max_length=100)
-    pickup_address = models.CharField(max_length=100)
-    pickup_phone_number = models.CharField(max_length=20)
-    pickup_business_name = models.CharField(max_length=100)
-    pickup_notes = models.CharField(max_length=200)
-    dropoff = models.ForeignKey(DonationCenter)
+    manifest = models.CharField(max_length=100, verbose_name="Donation Contents")
+    pickup_name = models.CharField(max_length=100, verbose_name="Your Name")
+    pickup_address = models.CharField(max_length=100, verbose_name="Your Address")
+    pickup_phone_number = models.CharField(max_length=20, verbose_name="Your Phone Number")
+    pickup_business_name = models.CharField(max_length=100, verbose_name="Your Bussiness Name")
+    pickup_notes = models.CharField(max_length=200, verbose_name="Pickup Notes")
+    dropoff = models.ForeignKey(DonationCenter, verbose_name="Dropoff Location")
     dropoff_notes = models.CharField(max_length=200)
     quote_id = models.CharField(max_length=20)
 

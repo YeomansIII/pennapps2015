@@ -6,7 +6,9 @@ from app.models import Pickup
 class PickupForm(forms.ModelForm):
     helper = FormHelper()
     helper.form_tag = False
-    self.helper.add_input(Submit('submit', 'Submit'))
+    helper.form_id = 'PickupForm'
+    helper.form_action = 'submit_survey'
+    helper.add_input(Submit('submit', 'Submit'))
 
     class Meta:
         model = Pickup

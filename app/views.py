@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from app.forms import PickupForm
 from accounts.models import Donor
 from app.models import DonationCenter
@@ -14,6 +15,8 @@ def Privacy(request):
     return render(request, 'privacy.html')
 
 def Pickup(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/accounts/login/')
     #form = PickupForm(['pickup_name': Donor.objects.filter(user=request.user)[0].user.username])
     #print(form.fields['pickup_name'])
     #print(Donor.objects.filter(user=request.user)[0].user.username)

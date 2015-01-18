@@ -2,7 +2,7 @@ from django.db import models
 from model_utils.models import TimeStampedModel
 
 from django.contrib.auth.models import User
-from app.models import Pickup
+from app.models import Pickup, Address
 
 # Create your models here.
 class Delivery(TimeStampedModel):
@@ -12,4 +12,5 @@ class Delivery(TimeStampedModel):
 
 class Donor(TimeStampedModel):
     user = models.OneToOneField(User)
-    #history = models.ManyToManyField(Delivery)
+    address = models.ForeignKey(Address)
+    history = models.ManyToManyField(Delivery, blank=True)

@@ -35,15 +35,15 @@ class Address(models.Model):
     zipcode = models.CharField(max_length=5)
 
     def __str__(self):              # __unicode__ on Python 2
-        return self.num+" "+self.street
+        return str(self.num)+" "+self.street
 
 class Coordinate(models.Model):
 
-    longitude = models.DecimalField(max_digits=9, decimal_places=7)
-    latitude = models.DecimalField(max_digits=9, decimal_places=7)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
 
     def __str__(self):              # __unicode__ on Python 2
-        return self.longitude+" "+self.latitude
+        return str(self.longitude)+" "+str(self.latitude)
 
 class Pickup(TimeStampedModel):
     manifest = models.CharField(max_length=100)
@@ -52,10 +52,7 @@ class Pickup(TimeStampedModel):
     pickup_phone_number = models.CharField(max_length=20)
     pickup_business_name = models.CharField(max_length=100)
     pickup_notes = models.CharField(max_length=200)
-    dropoff_name = models.CharField(max_length=100)
-    dropoff_address = models.CharField(max_length=100)
-    dropoff_phone_number = models.CharField(max_length=20)
-    dropoff_business_name = models.CharField(max_length=100)
+    dropoff = models.ForeignKey(DonationCenter)
     dropoff_notes = models.CharField(max_length=200)
     quote_id = models.CharField(max_length=20)
 

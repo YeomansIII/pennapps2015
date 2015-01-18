@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from app.forms import PickupForm
 from accounts.models import Donor
+from app.models import DonationCenter
 
 # Create your views here.
 def Home(request):
@@ -13,9 +14,13 @@ def Privacy(request):
     return render(request, 'privacy.html')
 
 def Pickup(request):
-	form = PickupForm()
-	form.fields['pickup_name'].queryset = Donor.objects.filter(user=request.user)
-	return render(request, 'pickup.html', {'form':PickupForm})
+    #form = PickupForm(['pickup_name': Donor.objects.filter(user=request.user)[0].user.username])
+    #print(form.fields['pickup_name'])
+    #print(Donor.objects.filter(user=request.user)[0].user.username)
+
+    form = PickupForm(initial={'pickup_name':Donor.objects.filter(user=request.user)[0].user.username, 'dropoff': DonationCenter.objects.filter(address__state='PA')})
+
+    return render(request, 'pickup.html', {'form':form})
 
 def Tracking(request):
     return render(request, 'tracking.html')

@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %} {% block title %} GMU RoomList &bull; Login {% endblock %} {% block content %}
+
+<link href="/static/css/signin.css" rel="stylesheet" media="screen">
+
+<div class="page-header" id="banner">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h1>Register</h1>
+    </div>
+  </div>
+</div>
+<!--
+<form class="form-signin" role="form" action="/accounts/register/" method="post">
+  {% csrf_token %}
+
+  <div class="row">
+    <div class="col-md-4">{{form.username.label}}</div>
+    <div class="col-md-8"> {{form.username}} {% if form.errors %} {{ form.username.errors }} {% endif %}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">{{form.password1.label}}</div>
+    <div class="col-md-8">{{form.password1}}{% if form.errors %} {{ form.password1.errors }} {% endif %}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">{{form.password2.label}}</div>
+    <div class="col-md-8"> {{form.password2}}{% if form.errors %} {{ form.password2.errors }} {% endif %}</div>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+  <input type="hidden" name="next" value="/" />
+</form>
+-->
+{{donoruser_form.username}}
+{{donoraddress_form.street}}
+{{form.}}
+
+{% endblock %}

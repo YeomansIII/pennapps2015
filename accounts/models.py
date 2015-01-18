@@ -12,4 +12,4 @@ class Delivery(TimeStampedModel):
 
 class Donor(TimeStampedModel):
     user = models.OneToOneField(User)
-    history = models.ManyToManyField(Delivery)
+    #history = models.ManyToManyField(Delivery)

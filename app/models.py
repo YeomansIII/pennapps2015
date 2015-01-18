@@ -35,7 +35,7 @@ class Address(models.Model):
     zipcode = models.CharField(max_length=5)
 
     def __str__(self):              # __unicode__ on Python 2
-        return str(self.num)+" "+self.street
+        return str(self.num)+" "+self.street+" "+self.city+", "+self.state+" "+self.zipcode
 
 class Coordinate(models.Model):
 

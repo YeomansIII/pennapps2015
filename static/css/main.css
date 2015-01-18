@@ -25,7 +25,7 @@ h6 {
 
 h1{
   font-size: 36px;
-  color:#fff;
+  color:#000;
 }
 
 h2{
@@ -2530,7 +2530,6 @@ shortcodes page css
 
 #get-started {
   border-radius: 10px;
-  margin-top: 50px;
   color: white;
   background-color: #c52d2f;
   width: 250px;

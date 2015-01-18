@@ -67,8 +67,10 @@
 </section>
 
 <div class="container">
-  {% load crispy_forms_tags %} {% crispy form %}
-
+  {% load crispy_forms_tags %} {% crispy form form.helper%}
+  {% if qoute %}
+  <h3>Qoute: {{qoute}}</h3>
+  {% endif %}
 </div>
 
 {% endblock %}

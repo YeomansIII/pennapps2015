@@ -4,6 +4,7 @@ from model_utils.models import TimeStampedModel
 # Create your models here.
 class DonationCenter(models.Model):
     name = models.CharField(max_length=100)
+    dropoff_notes = models.CharField(max_length=1000)
 
     FOOD = 'fd'
     CLOTHING = 'cl'
@@ -15,9 +16,7 @@ class DonationCenter(models.Model):
         (TOYS, 'Toys'),
         (HOUSEHOLD_ITEMS, 'Household Items'),
     )
-
-    industry = models.CharField(max_length=100, choices=INDUSTRY_CHOICES,
-    default=FOOD)
+    industry = models.CharField(max_length=100, choices=INDUSTRY_CHOICES, default=FOOD)
 
     address = models.ForeignKey('Address')
     coordinate = models.ForeignKey('Coordinate')
@@ -53,7 +52,7 @@ class Pickup(TimeStampedModel):
     pickup_business_name = models.CharField(max_length=100, verbose_name="Your Bussiness Name")
     pickup_notes = models.CharField(max_length=200, verbose_name="Pickup Notes")
     dropoff = models.ForeignKey(DonationCenter, verbose_name="Dropoff Location")
-    dropoff_notes = models.CharField(max_length=200)
+    #dropoff_notes = models.CharField(max_length=200)
     quote_id = models.CharField(max_length=20)
 
     def __str__(self):

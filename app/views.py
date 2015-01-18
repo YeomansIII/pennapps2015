@@ -62,3 +62,7 @@ def Pickup(request):
 
 def Tracking(request):
     return render(request, 'tracking.html')
+
+def Profile(request):
+	profile_info = "Username: "+Donor.objects.filter(user=request.user)[0].user.username+"\r" + "Address: "+Donor.objects.filter(user=request.user)[0].address.__str__()+"\r" + "Phone Number: "+Donor.objects.filter(user=request.user)[0].phone_number+"\r" + "Business Name: "+Donor.objects.filter(user=request.user)[0].business_name+"\r"
+	return render(request, 'profile.html', {'profile_info':profile_info})

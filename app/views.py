@@ -121,3 +121,10 @@ def Tracking(request):
 
 
     return render(request, 'tracking.html')
+
+def Profile(request):
+    username = "Username: "+Donor.objects.filter(user=request.user)[0].user.username
+    address = "Address: "+Donor.objects.filter(user=request.user)[0].address.__str__()
+    phone_number = "Phone Number: "+Donor.objects.filter(user=request.user)[0].phone_number
+    business_name = "Business Name: "+Donor.objects.filter(user=request.user)[0].business_name
+    return render(request, 'profile.html', {'username':username, 'address':address, 'phone_number':phone_number, 'business_name':business_name})

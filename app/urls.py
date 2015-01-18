@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^privacy/', 'app.views.Privacy', name='privacy'),
     url(r'^pickup/', 'app.views.PickupPage', name='pickup'),
     url(r'^tracking/', 'app.views.Tracking', name='tracking'),
+    url(r'^profile/', 'app.views.Profile', name='profile')
 )

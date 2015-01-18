@@ -67,10 +67,27 @@
 </section>
 
 <div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 text-center">
+			<style>
+			label {
+			position: relative;
+			z-index: 1;
+			padding-left: 6px;
+			font-weight: normal;
+			font-size: 18px;
+			font-family: "Arial";
+			opacity: 0.75;
+			-webkit-transition: opacity 0.15s linear;
+			color:red;
+			}
+			</style>
   {% load crispy_forms_tags %} {% crispy form form.helper%}
   {% if qoute %}
   <h3>Qoute: {{qoute}}</h3>
   {% endif %}
+</div>
+</div>
 </div>
 
 {% endblock %}

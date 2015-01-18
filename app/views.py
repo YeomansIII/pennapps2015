@@ -18,7 +18,7 @@ def Pickup(request):
     #print(form.fields['pickup_name'])
     #print(Donor.objects.filter(user=request.user)[0].user.username)
 
-    form = PickupForm(initial={'pickup_name':Donor.objects.filter(user=request.user)[0].user.username, 'dropoff': DonationCenter.objects.filter(address__state='PA')})
+    form = PickupForm(initial={'pickup_name':Donor.objects.filter(user=request.user)[0].user.username, 'pickup_address':Donor.objects.filter(user=request.user)[0].address.__str__(), 'dropoff': DonationCenter.objects.filter(address__state='PA')})
 
     return render(request, 'pickup.html', {'form':form})
 

@@ -29,6 +29,35 @@ def Pickup(request):
 
     donation_centers = DonationCenter.objects.filter(address__city='Philladelphia')
 
+    '''if request.method == 'POST':
+        form = PickupForm(request.POST)
+        if form.is_valid():
+        	post_data = [('manifest',request.POST.get("manifest", "")), ('pickup_name',request.POST.get("pickup_name", "")), 
+        		('pickup_address',request.POST.get("pickup_address", "")), 	('pickup_phone_number',request.POST.get("pickup_phone_number", ""), 
+        		('pickup_business_name',request.POST.get("pickup_business_name", "")), ('pickup_notes',request.POST.get("pickup_notes", "")), 
+        		('dropoff_name',request.POST.get("dropoff_name", "")), ('dropoff_address',request.POST.get("dropoff_address", "")), 
+        		('dropoff_phone_number',request.POST.get("dropoff_phone_number", "")), ('dropoff_business_name',request.POST.get("dropoff_business_name", "")), 
+        		('dropoff_notes',request.POST.get("dropoff_notes", "")), ('quote_id',request.POST.get("quote_id", "")), ]     # a sequence of two element tuples
+			result = urllib2.urlopen('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/deliveries', urllib.urlencode(post_data))
+			content = result.read()
+            return ''
+    else:
+        form = PickupForm()
+
+    return render(request, 'pickup.html', {'form':form})
+
+    if request.method == 'POST':
+        form = PickupForm(request.POST)
+        if form.is_valid():
+        	post_data = [('pickup_address',request.POST.get("pickup_address", "")), ('dropoff_address',request.POST.get("dropoff_address", "")), ]     # a sequence of two element tuples
+        	result = urllib2.urlopen('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/delivery_quotes', urllib.urlencode(post_data))
+        	content = result.read()
+        return content.fee
+    else:
+        form = PickupForm()
+
+    return render(request, 'pickup.html', {'form':form})'''
+
     return render(request, 'pickup.html', {'form':form, 'donation_centers':donation_centers})
 
 def Tracking(request):

@@ -6,10 +6,11 @@ from accounts.models import Donor
 
 class PickupForm(forms.ModelForm):
     helper = FormHelper()
-    helper.form_tag = False
+    helper.form_tag = True
     helper.form_id = 'PickupForm'
-    helper.form_action = 'submit_survey'
-    helper.add_input(Submit('submit', 'Submit'))
+    helper.form_action = 'pickup'
+    helper.add_input(Submit('_qoute', 'Qoute'))
+    helper.add_input(Submit('_submit', 'Submit'))
 
     class Meta:
         model = Pickup

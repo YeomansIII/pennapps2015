@@ -9,7 +9,7 @@ class PickupForm(forms.ModelForm):
     helper.form_tag = True
     helper.form_id = 'PickupForm'
     helper.form_action = 'pickup'
-    helper.add_input(Submit('_qoute', 'Qoute'))
+    helper.add_input(Submit('_qoute', 'Quote'))
     helper.add_input(Submit('_submit', 'Submit'))
 
     class Meta:

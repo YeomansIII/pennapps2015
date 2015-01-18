@@ -13,6 +13,6 @@ class Delivery(TimeStampedModel):
 class Donor(TimeStampedModel):
     user = models.OneToOneField(User)
     address = models.ForeignKey(Address)
-    history = models.ManyToManyField(Delivery, blank=True)
+    history = models.ManyToManyField(Pickup, blank=True)
     phone_number = models.CharField(max_length=20)
     business_name = models.CharField(max_length=100)

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from app.forms import PickupForm
 from accounts.models import Donor
-from app.models import DonationCenter
+from app.models import DonationCenter, Pickup
 import requests
 import json
 
@@ -16,7 +16,7 @@ def About(request):
 def Privacy(request):
     return render(request, 'privacy.html')
 
-def Pickup(request):
+def PickupPage(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/accounts/login/')
     #form = PickupForm(['pickup_name': Donor.objects.filter(user=request.user)[0].user.username])
@@ -63,6 +63,7 @@ def Pickup(request):
 
             form = PickupForm(request.POST)
             if form.is_valid():
+
                 ##Make new qoute request to send with delivery request
                 s = requests.Session()
                 s.auth = ('c79fe220-4ac4-4771-b2cc-7230fcfbcca9', '')
@@ -86,7 +87,17 @@ def Pickup(request):
                     'dropoff_notes':DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0].dropoff_notes, 'quote_id':qoute_id }     # a sequence of two element tuples
                 response = s.post('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/deliveries', data=post_data)
                 content = response.content
+                jay = json.loads(content)
+                deliveryid = jay['id']
                 qoute_val = content
+
+
+                pickup_obj = Pickup.objects.create(manifest=form.cleaned_data['manifest'], pickup_name=form.cleaned_data['pickup_name'], pickup_address=form.cleaned_data['pickup_address'], pickup_phone_number=form.cleaned_data['pickup_phone_number'], pickup_business_name=form.cleaned_data['pickup_business_name'], pickup_notes=form.cleaned_data['pickup_notes'], dropoff=DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0], delivery_id=deliveryid, quote_id=qoute_id)
+                pickup_obj.save()
+                donor = Donor.objects.filter(user=request.user)[0]
+                donor.history.add(pickup_obj)
+                donor.save()
+                return HttpResponseRedirect('/tracking/')
 
     else:
         form = PickupForm(initial={'pickup_name':Donor.objects.filter(user=request.user)[0].user.username,
@@ -100,4 +111,13 @@ def Pickup(request):
     return render(request, 'pickup.html', {'form':form, 'donation_centers':donation_centers, 'qoute':qoute_val})
 
 def Tracking(request):
+
+    s = requests.Session()
+    s.auth = ('c79fe220-4ac4-4771-b2cc-7230fcfbcca9', '')
+    post_data = {'pickup_address':form.cleaned_data['pickup_address'], 'dropoff_address':DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0].address.__str__()}     # a sequence of two element tuples
+    response = s.post('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/delivery_quotes', data=post_data)
+    content = response.content
+    jay = json.loads(content)
+
+
     return render(request, 'tracking.html')

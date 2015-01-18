@@ -54,6 +54,7 @@ class Pickup(TimeStampedModel):
     pickup_notes = models.CharField(max_length=200, verbose_name="Pickup Notes")
     dropoff = models.ForeignKey(DonationCenter, verbose_name="Dropoff Location")
     #dropoff_notes = models.CharField(max_length=200)
+    delivery_id = models.CharField(max_length=20)
     quote_id = models.CharField(max_length=20)
 
     def __str__(self):

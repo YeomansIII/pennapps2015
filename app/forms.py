@@ -13,7 +13,7 @@ class PickupForm(forms.ModelForm):
 
     class Meta:
         model = Pickup
-        fields = ("manifest", "pickup_name", "pickup_address", "pickup_phone_number", "pickup_business_name", "pickup_notes", "dropoff", "dropoff_notes")
+        fields = ("manifest", "pickup_name", "pickup_address", "pickup_phone_number", "pickup_business_name", "pickup_notes", "dropoff")
 
 #class PickupForm(forms.Form):
 	#class Meta:

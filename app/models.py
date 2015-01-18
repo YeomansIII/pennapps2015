@@ -5,6 +5,7 @@ from model_utils.models import TimeStampedModel
 class DonationCenter(models.Model):
     name = models.CharField(max_length=100)
     dropoff_notes = models.CharField(max_length=1000)
+    icon_image = models.CharField(max_length=1000)
 
     FOOD = 'fd'
     CLOTHING = 'cl'
@@ -38,8 +39,8 @@ class Address(models.Model):
 
 class Coordinate(models.Model):
 
-    longitude = models.FloatField()
     latitude = models.FloatField()
+    longitude = models.FloatField()
 
     def __str__(self):              # __unicode__ on Python 2
         return str(self.longitude)+" "+str(self.latitude)

@@ -22,12 +22,14 @@ def Pickup(request):
     #print(Donor.objects.filter(user=request.user)[0].user.username)
 
     form = PickupForm(initial={'pickup_name':Donor.objects.filter(user=request.user)[0].user.username,
-    	'pickup_address':Donor.objects.filter(user=request.user)[0].address.__str__(), 
-    	'pickup_phone_number':Donor.objects.filter(user=request.user)[0].phone_number, 
-    	'pickup_business_name':Donor.objects.filter(user=request.user)[0].business_name, 
+    	'pickup_address':Donor.objects.filter(user=request.user)[0].address.__str__(),
+    	'pickup_phone_number':Donor.objects.filter(user=request.user)[0].phone_number,
+    	'pickup_business_name':Donor.objects.filter(user=request.user)[0].business_name,
     	'dropoff': DonationCenter.objects.filter(address__state='PA')})
 
-    return render(request, 'pickup.html', {'form':form})
+    donation_centers = DonationCenter.objects.filter(address__city='Philladelphia')
+
+    return render(request, 'pickup.html', {'form':form, 'donation_centers':donation_centers})
 
 def Tracking(request):
     return render(request, 'tracking.html')

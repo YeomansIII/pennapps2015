@@ -34,7 +34,20 @@
         position: latlng,
         map: map,
         title: "You are here! (at least within a " + position.coords.accuracy + " meter radius)"
-      });
+    });
+
+      {% for center in donation_centers %}
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng({{center.coordinate.latitude}}, {{center.coordinate.longitude}}),
+          map: map,
+          title: "{{center.name}}",
+          icon: "{{center.icon_image}}"
+        });
+
+      {% endfor %}
+
+
     }
 
     function error(msg) {

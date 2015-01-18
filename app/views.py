@@ -97,7 +97,7 @@ def PickupPage(request):
                 donor = Donor.objects.filter(user=request.user)[0]
                 donor.history.add(pickup_obj)
                 donor.save()
-                return HttpResponseRedirect('/tracking/')
+                return HttpResponseRedirect('https://postmates.com/developer/deliveries/'+deliveryid)
 
     else:
         form = PickupForm(initial={'pickup_name':Donor.objects.filter(user=request.user)[0].user.username,
@@ -112,19 +112,14 @@ def PickupPage(request):
 
 def Tracking(request):
 
-    s = requests.Session()
-    s.auth = ('c79fe220-4ac4-4771-b2cc-7230fcfbcca9', '')
-    post_data = {'pickup_address':form.cleaned_data['pickup_address'], 'dropoff_address':DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0].address.__str__()}     # a sequence of two element tuples
-    response = s.post('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/delivery_quotes', data=post_data)
-    content = response.content
-    jay = json.loads(content)
+    #Donor.objects.filter(user=request.user)[0].history.
+
+#    s = requests.Session()
+#    s.auth = ('c79fe220-4ac4-4771-b2cc-7230fcfbcca9', '')
+#    post_data = {'pickup_address':form.cleaned_data['pickup_address'], 'dropoff_address':DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0].address.__str__()}     # a sequence of two element tuples
+#    response = s.post('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/delivery_quotes', data=post_data)
+#    content = response.content
+#    jay = json.loads(content)
 
 
     return render(request, 'tracking.html')
-
-def Profile(request):
-    username = "Username: "+Donor.objects.filter(user=request.user)[0].user.username
-    address = "Address: "+Donor.objects.filter(user=request.user)[0].address.__str__()
-    phone_number = "Phone Number: "+Donor.objects.filter(user=request.user)[0].phone_number
-    business_name = "Business Name: "+Donor.objects.filter(user=request.user)[0].business_name
-    return render(request, 'profile.html', {'username':username, 'address':address, 'phone_number':phone_number, 'business_name':business_name})

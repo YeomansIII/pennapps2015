@@ -25,22 +25,6 @@ def PickupPage(request):
 
     donation_centers = DonationCenter.objects.filter(address__city='Philladelphia')
 
-    '''if request.method == 'POST':
-        form = PickupForm(request.POST)
-        if form.is_valid():
-        	post_data = [('manifest',request.POST.get("manifest", "")), ('pickup_name',request.POST.get("pickup_name", "")),
-        		('pickup_address',request.POST.get("pickup_address", "")), 	('pickup_phone_number',request.POST.get("pickup_phone_number", ""),
-        		('pickup_business_name',request.POST.get("pickup_business_name", "")), ('pickup_notes',request.POST.get("pickup_notes", "")),
-        		('dropoff_name',request.POST.get("dropoff_name", "")), ('dropoff_address',request.POST.get("dropoff_address", "")),
-        		('dropoff_phone_number',request.POST.get("dropoff_phone_number", "")), ('dropoff_business_name',request.POST.get("dropoff_business_name", "")),
-        		('dropoff_notes',request.POST.get("dropoff_notes", "")), ('quote_id',request.POST.get("quote_id", "")), ]     # a sequence of two element tuples
-			result = urllib2.urlopen('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/deliveries', urllib.urlencode(post_data))
-			content = result.read()
-            return ''
-    else:
-        form = PickupForm()
-
-    return render(request, 'pickup.html', {'form':form})'''
     qoute_val=None
     if request.method == 'POST':
         if '_qoute' in request.POST:
@@ -85,11 +69,11 @@ def PickupPage(request):
                     'dropoff_name':DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0].name, 'dropoff_address':DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0].address.__str__(),
                     'dropoff_phone_number':form.cleaned_data['pickup_phone_number'], 'dropoff_business_name':DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0].name,
                     'dropoff_notes':DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0].dropoff_notes, 'quote_id':qoute_id }     # a sequence of two element tuples
-                response = s.post('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/deliveries', data=post_data)
-                content = response.content
-                jay = json.loads(content)
-                deliveryid = jay['id']
-                qoute_val = content
+                response2 = s.post('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/deliveries', data=post_data)
+                content2 = response2.content
+                jay2 = json.loads(content2)
+                deliveryid = jay2['id']
+                qoute_val = content2
 
 
                 pickup_obj = Pickup.objects.create(manifest=form.cleaned_data['manifest'], pickup_name=form.cleaned_data['pickup_name'], pickup_address=form.cleaned_data['pickup_address'], pickup_phone_number=form.cleaned_data['pickup_phone_number'], pickup_business_name=form.cleaned_data['pickup_business_name'], pickup_notes=form.cleaned_data['pickup_notes'], dropoff=DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0], delivery_id=deliveryid, quote_id=qoute_id)
@@ -110,16 +94,12 @@ def PickupPage(request):
 
     return render(request, 'pickup.html', {'form':form, 'donation_centers':donation_centers, 'qoute':qoute_val})
 
-def Tracking(request):
+def Tracking(request, delivery_id):
+    return render(request, 'tracking.html', {'delivery_id':delivery_id})
 
-    #Donor.objects.filter(user=request.user)[0].history.
-
-#    s = requests.Session()
-#    s.auth = ('c79fe220-4ac4-4771-b2cc-7230fcfbcca9', '')
-#    post_data = {'pickup_address':form.cleaned_data['pickup_address'], 'dropoff_address':DonationCenter.objects.filter(name=form.cleaned_data['dropoff'])[0].address.__str__()}     # a sequence of two element tuples
-#    response = s.post('https://api.postmates.com/v1/customers/cus_KAavEXNQhOREkF/delivery_quotes', data=post_data)
-#    content = response.content
-#    jay = json.loads(content)
-
-
-    return render(request, 'tracking.html')
+def TrackId(request, delivery_id):
+    s = requests.Session()
+    s.auth = ('c79fe220-4ac4-4771-b2cc-7230fcfbcca9', '')
+    response = s.get('/v1/customers/cus_KAavEXNQhOREkF/deliveries/'+delivery_id+'/')
+    content = response.content
+    return HttpResponse(content)
